@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5f8f75">
+  <title>Programació LOMLOE · Matèries i situacions d’aprenentatge</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">PWA educativa independent</p>
+      <h1>Programació LOMLOE</h1>
+      <p class="subtitle">Matèries i situacions d’aprenentatge</p>
+    </div>
+    <div class="header-actions">
+      <button id="installBtn" class="btn secondary" hidden>Instal·la</button>
+      <button id="newBtn" class="btn">Nova programació</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Navegació principal">
+      <button class="nav-item active" data-view="editor">Editor</button>
+      <button class="nav-item" data-view="document">Vista document</button>
+      <button class="nav-item" data-view="library">Biblioteca local</button>
+      <button class="nav-item" data-view="import">Importa / exporta</button>
+      <button class="nav-item" data-view="ai">Mode IA</button>
+      <button class="nav-item" data-view="diagnostic">Diagnòstic PWA</button>
+    </aside>
+
+    <section class="workspace">
+      <section id="editor" class="view active-view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Editor guiat</p>
+            <h2>Programació anual o trimestral</h2>
+          </div>
+          <div class="toolbar">
+            <button id="saveBtn" class="btn">Desa</button>
+            <button id="pdfBtn" class="btn secondary">PDF</button>
+            <button id="wordBtn" class="btn secondary">Word</button>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>Dades generals</h3>
+            <div class="form-grid">
+              <label>Departament<input data-field="general.departament"></label>
+              <label>Docent/s<input data-field="general.docents"></label>
+              <label>Matèria<input data-field="general.materia"></label>
+              <label>Tipus de matèria<input data-field="general.tipusMateria"></label>
+              <label>Nivell<input data-field="general.nivell"></label>
+              <label>Curs acadèmic<input data-field="general.cursAcademic"></label>
+              <label>Centre<input data-field="general.centre"></label>
+              <label>Grup/s<input data-field="general.grup"></label>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Marc normatiu i enfocament</h3>
+            <label>Marc normatiu<textarea rows="8" data-field="marcNormatiu"></textarea></label>
+            <label>Vectors o principis pedagògics<textarea rows="5" data-field="vectorsPedagogics"></textarea></label>
+          </article>
+        </div>
+
+        <article class="card">
+          <h3>Competències clau i indicadors</h3>
+          <p class="hint">Una línia per competència. Pots enganxar text llarg.</p>
+          <textarea rows="10" data-field="competenciesClau"></textarea>
+        </article>
+
+        <article class="card">
+          <h3>Temporització, sabers, situacions, competències i criteris</h3>
+          <div id="termsEditor" class="term-list"></div>
+          <button id="addTermBtn" class="btn secondary">Afegeix trimestre/període</button>
+        </article>
+
+        <article class="card">
+          <h3>Indicadors d’avaluació</h3>
+          <div id="indicatorsEditor" class="indicator-list"></div>
+          <button id="addIndicatorBtn" class="btn secondary">Afegeix criteri</button>
+        </article>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>Metodologia i gestió d’aula</h3>
+            <textarea rows="10" data-field="metodologia"></textarea>
+          </article>
+          <article class="card">
+            <h3>Recursos i materials didàctics</h3>
+            <textarea rows="10" data-field="recursos"></textarea>
+          </article>
+        </div>
+
+        <article class="card">
+          <h3>Mesures i suports d’atenció educativa inclusiva</h3>
+          <div class="grid three">
+            <label>Universals<textarea rows="8" data-field="atencioDiversitat.universals"></textarea></label>
+            <label>Addicionals<textarea rows="8" data-field="atencioDiversitat.addicionals"></textarea></label>
+            <label>Intensives<textarea rows="8" data-field="atencioDiversitat.intensives"></textarea></label>
+          </div>
+        </article>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>Activitats complementàries</h3>
+            <textarea rows="8" data-field="activitatsComplementaries"></textarea>
+          </article>
+          <article class="card">
+            <h3>Avaluació, qualificació i recuperació</h3>
+            <textarea rows="8" data-field="avaluacio"></textarea>
+          </article>
+        </div>
+      </section>
+
+      <section id="document" class="view">
+        <div class="section-head no-print">
+          <div>
+            <p class="eyebrow">Sortida neta</p>
+            <h2>Vista document per copiar, imprimir o exportar</h2>
+          </div>
+          <div class="toolbar">
+            <button id="copyDocBtn" class="btn secondary">Copia document</button>
+            <button id="printBtn" class="btn">Imprimeix / PDF</button>
+          </div>
+        </div>
+        <div id="printArea" class="document-paper"></div>
+      </section>
+
+      <section id="library" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">localStorage</p>
+            <h2>Biblioteca local</h2>
+          </div>
+          <button id="backupBtn" class="btn secondary">Còpia completa JSON</button>
+        </div>
+        <div id="libraryList" class="library-list"></div>
+      </section>
+
+      <section id="import" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Còpies i documents</p>
+            <h2>Importa / exporta</h2>
+          </div>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <h3>Importa JSON</h3>
+            <input id="jsonFile" type="file" accept=".json,application/json">
+            <p class="hint">Restaura una programació o una còpia de seguretat generada per l’app.</p>
+          </article>
+          <article class="card">
+            <h3>Importa text base</h3>
+            <input id="textFile" type="file" accept=".txt,.doc,.docx,.pdf,text/plain">
+            <p class="hint">En aquesta versió, TXT s’importa directament. PDF/DOCX queden preparats com a flux assistit per a versions següents.</p>
+          </article>
+        </div>
+        <article class="card">
+          <h3>Text importat / base de treball</h3>
+          <textarea id="importedText" rows="14" placeholder="Enganxa o importa text aquí..."></textarea>
+          <div class="toolbar left">
+            <button id="useImportedAsMethodology" class="btn secondary">Envia a metodologia</button>
+            <button id="useImportedAsResources" class="btn secondary">Envia a recursos</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="ai" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Opcional</p>
+            <h2>Mode IA assistida</h2>
+          </div>
+        </div>
+        <article class="card">
+          <h3>Configuració</h3>
+          <p>Aquesta primera versió deixa preparat el mòdul IA, però funciona completament sense IA externa.</p>
+          <label>API key Gemini opcional<input id="apiKey" type="password" placeholder="No obligatori"></label>
+          <label><input id="saveApiKey" type="checkbox"> Desa la clau només en aquest navegador</label>
+          <button id="saveSettingsBtn" class="btn secondary">Desa configuració</button>
+        </article>
+        <article class="card">
+          <h3>Generador local sense IA</h3>
+          <p class="hint">Afegeix textos base segurs i editables sense enviar dades a cap servei extern.</p>
+          <div class="toolbar left wrap">
+            <button class="btn secondary local-gen" data-target="metodologia">Omple metodologia base</button>
+            <button class="btn secondary local-gen" data-target="avaluacio">Omple avaluació base</button>
+            <button class="btn secondary local-gen" data-target="diversitat">Omple mesures inclusives</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="diagnostic" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">PWA</p>
+            <h2>Diagnòstic de cache i service worker</h2>
+          </div>
+        </div>
+        <article class="card">
+          <div id="diagnosticBox" class="diagnostic-box"></div>
+          <button id="refreshDiagBtn" class="btn secondary">Actualitza diagnòstic</button>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
