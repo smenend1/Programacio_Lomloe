@@ -1,14 +1,12 @@
 {
-  "name": "Programació LOMLOE · Matèries i situacions d’aprenentatge",
-  "short_name": "ProgLOMLOE",
-  "description": "PWA en català per crear programacions anuals o trimestrals de matèries segons la LOMLOE.",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#f3f7f2",
-  "theme_color": "#5f8f75",
-  "lang": "ca",
-  "icons": [
-    {"src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%235f8f75'/%3E%3Ctext x='96' y='113' font-size='70' text-anchor='middle' fill='white' font-family='Arial'%3EPL%3C/text%3E%3C/svg%3E", "sizes": "192x192", "type": "image/svg+xml"},
-    {"src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%235f8f75'/%3E%3Ctext x='256' y='302' font-size='180' text-anchor='middle' fill='white' font-family='Arial'%3EPL%3C/text%3E%3C/svg%3E", "sizes": "512x512", "type": "image/svg+xml"}
+  "name":"Programació LOMLOE · Matèries i SA",
+  "short_name":"ProgLOMLOE",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "background_color":"#fbfaf6",
+  "theme_color":"#4f8f6b",
+  "description":"PWA en català per crear programacions LOMLOE amb situacions d’aprenentatge, sabers, CE i CA.",
+  "icons":[
+    {"src":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%234f8f6b'/%3E%3Ctext x='96' y='112' text-anchor='middle' font-size='76' fill='white' font-family='Arial'%3EPL%3C/text%3E%3C/svg%3E","sizes":"192x192","type":"image/svg+xml"}
   ]
 }
